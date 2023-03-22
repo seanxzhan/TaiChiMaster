@@ -7,12 +7,27 @@ import numpy as np
 sys.path.append('/home/seanzhan/projects/others/openpose/build/python')
 from openpose import pyopenpose as op
 
+params = dict()
+params["model_folder"] = "/home/seanzhan/projects/others/openpose/models/"
+
+opWrapper = op.WrapperPython()
+opWrapper.configure(params)
+opWrapper.start()
+
 vid = cv2.VideoCapture(0)
   
 while(True):
     ret, frame = vid.read()
     frame = cv2.flip(frame, 1)
-    cv2.imshow('frame', frame)
+    # cv2.imshow('frame', frame)
+
+    # Process Image
+    datum = op.Datum()
+    datum.cvInputData = frame
+    opWrapper.emplaceAndPop(op.VectorDatum([datum]))
+
+    # print("Body keypoints: \n" + str(datum.poseKeypoints))
+    cv2.imshow("frame", datum.cvOutputData)
 
     if cv2.waitKey(33) == ord('q'):
         print("quit")
