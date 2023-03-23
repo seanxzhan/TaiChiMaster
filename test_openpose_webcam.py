@@ -9,16 +9,19 @@ from openpose import pyopenpose as op
 
 params = dict()
 params["model_folder"] = "/home/seanzhan/projects/others/openpose/models/"
+params["model_pose"] = "BODY_25"
 
 opWrapper = op.WrapperPython()
 opWrapper.configure(params)
 opWrapper.start()
 
-vid = cv2.VideoCapture(0)
+cam_idx = 0
+vid = cv2.VideoCapture(cam_idx)
   
 while(True):
     ret, frame = vid.read()
-    frame = cv2.flip(frame, 1)
+    if cam_idx == 0:
+        frame = cv2.flip(frame, 1)
     # cv2.imshow('frame', frame)
 
     # Process Image
