@@ -14,15 +14,24 @@ opWrapper.configure(params)
 opWrapper.start()
 
 test_img_path = "test_image.jpg"
+# test_img_path = "/home/seanzhan/projects/TaiChiMaster/kp/10-notfound.png"
 frame = cv2.imread(test_img_path)
-scale_percent = 20 # percent of original size
-width = int(frame.shape[1] * scale_percent / 100)
-height = int(frame.shape[0] * scale_percent / 100)
-dim = (width, height)
-frame = cv2.resize(frame, dim, interpolation = cv2.INTER_AREA)
+
+# gt_frames_path = 'data/ground_truths.npz'
+# gt_frames = np.load(gt_frames_path)["arr_0"]
+# frame = gt_frames[10]
+
+# scale_percent = 20 # percent of original size
+# width = int(frame.shape[1] * scale_percent / 100)
+# height = int(frame.shape[0] * scale_percent / 100)
+# dim = (width, height)
+# frame = cv2.resize(frame, dim, interpolation = cv2.INTER_AREA)
+
 # cv2.imshow("frame", frame)
 # cv2.waitKey(0)
 # cv2.destroyAllWindows()
+
+print(frame.shape)
 
 datum = op.Datum()
 datum.cvInputData = frame
@@ -32,6 +41,11 @@ opWrapper.emplaceAndPop(op.VectorDatum([datum]))
 # cv2.destroyAllWindows()
 
 all_keypoints = datum.poseKeypoints
+
+_, frame = get_joint_angles_from_image(
+    all_keypoints, draw=True, in_frame=frame)
+cv2.imwrite('test_out.png', frame)
+exit(0)
 
 keypoints = all_keypoints[0]
 noseX = keypoints[nose][0]
