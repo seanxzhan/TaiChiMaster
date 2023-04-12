@@ -19,7 +19,8 @@ def test():
     real = np.random.rand(100, 8)
     truth = np.random.rand(100, 8)
 
-    print(compare(real, truth))
+    accuracy = round(compare(real, truth) * 100)
+    print(f'{accuracy}%')
 
 def main():
     test()
