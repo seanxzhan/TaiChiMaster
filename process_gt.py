@@ -25,24 +25,27 @@ gt_angles = np.zeros((n_frames, 8), np.float32)
 # print(gt_frames[0].shape)
 # exit(0)
 
-num_null = 0
+# num_null = 0
 
 for i in range(n_frames):
     in_path = f'data/{i}.png'
     frame = cv2.imread(in_path)
-    datum = op.Datum()
-    datum.cvInputData = frame
-    opWrapper.emplaceAndPop(op.VectorDatum([datum]))
-    all_keypoints = datum.poseKeypoints
-    if all_keypoints is None:
-        num_null += 1
-        cv2.imwrite(f'kp/{i}-notfound.png', frame)
-        continue
+    # datum = op.Datum()
+    # datum.cvInputData = frame
+    # opWrapper.emplaceAndPop(op.VectorDatum([datum]))
+    # all_keypoints = datum.poseKeypoints
+    # if all_keypoints is None:
+    #     num_null += 1
+    #     cv2.imwrite(f'kp/{i}-notfound.png', frame)
+    #     continue
     # gt_angles[i] = get_joint_angles_from_image(all_keypoints)
     gt_angles[i], frame = get_joint_angles_from_image(
-        all_keypoints, draw=True, in_frame=frame)
+        frame, draw=True)
     cv2.imwrite(f'kp/{i}-found.png', frame)
 
-gt_angles = gt_angles[:n_frames - num_null]
+# gt_angles = gt_angles[:n_frames - num_null]
 np.save('data/joint_angles.npy', gt_angles)
+
+
+
 
