@@ -167,7 +167,7 @@ def get_joint_angles_from_image(frame, opWrapper, draw=False):
         cv2.circle(frame, (lfootX, lfootY), circleRad, circleColor)
         cv2.circle(frame, (rfootX, rfootY), circleRad, circleColor)
 
-        lineColor = (256, 0, 0)
+        lineColor = (0, 256, 256)
         lineWidth = 3
 
         cv2.line(frame, noseC, neckC, lineColor, lineWidth)

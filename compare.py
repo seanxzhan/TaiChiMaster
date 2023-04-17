@@ -10,7 +10,7 @@ def angle_similarity(real, truth):
     cos_dist = distance.cosine(real, truth)
     cos = 1 - cos_dist
     angle = np.arccos(cos)
-    return 1 - penalty(angle / np.pi)
+    return np.clip(1 - penalty(angle / np.pi), 0, 1)
 
 
 # gets accuracy for single real image compared to max similarity with truth images
