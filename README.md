@@ -1,5 +1,7 @@
 # Tai Chi Master
 
+![teaser1](/images/1.png)
+
 ## About
 
 Tai Chi Master is a tool created by Edward Xing and Xiao (Sean) Zhan to measure a user's accuracy in performing Tai Chi 24. It provides an objective measurement based on the joint angles of key body parts. Accuracy is computed by comparing the joint angles of the user to that of the ground truth based on Master Amin Wu.
@@ -20,3 +22,6 @@ Slides containing more information are available [here](https://docs.google.com/
   - the openpose python path with your path. 
   - the openpose models path with your path.
 - Try out your pose accuracy against some sample pooses by running `python run_online_24_poses.py`
+- Here's an example of what it looks like:
+
+![teaser1](/images/3.png)
