@@ -21,7 +21,7 @@ Slides containing more information are available [here](https://docs.google.com/
 - In `run_online_24_poses.py`, replace
   - the openpose python path with your path. 
   - the openpose models path with your path.
-- Try out your pose accuracy against some sample pooses by running `python run_online_24_poses.py`
+- Try out your pose accuracy against some sample poses by running `python run_online_24_poses.py`
 - Here's an example of what it looks like:
 
 ![teaser1](/images/3.png)
